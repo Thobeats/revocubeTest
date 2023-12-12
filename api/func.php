@@ -150,11 +150,33 @@ function get_phonebook($phone_number)
     $user = get_user();
     $user_id = $user['user_id'];
 
-    $sql = "SELECT FROM phonebook where phone_number = '$phone_number'";
+    $sql = "SELECT FROM phonebook where `user_id` = '$user_id' and phone_number = '$phone_number'";
     $query = mysqli_query(conn(), $sql);
     return mysqli_fetch_assoc($query);
 }
 
+function get_all_numbers()
+{
+    $user = get_user();
+    $user_id = $user['user_id'];
+    $sql = "SELECT FROM phonebook where `user_id` = '$user_id'";
+    $query = mysqli_query(conn(), $sql);
+    return mysqli_fetch_assoc($query);
+}
+
+function edit_number($id, $phone_number)
+{
+    $sql = "UPDATE phonebook set phone_number = '$phone_number' where `id` = '$id'";
+    $query = mysqli_query(conn(), $sql);
+    return mysqli_fetch_assoc($query);
+}
+
+function delete_number($id)
+{
+    $sql = "DELETE from phonebook where `id` = '$id'";
+    $query = mysqli_query(conn(), $sql);
+    return mysqli_fetch_assoc($query);
+}
 
 function set_user($user)
 {
