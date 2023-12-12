@@ -1,5 +1,5 @@
 <?php
-
+    include "api/func.php";
 ?>
 
 <!DOCTYPE html>
