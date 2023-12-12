@@ -38,9 +38,9 @@ function login_user($username, $password)
         }
         else
         {
+            session_start();
             //Create session
             set_user($user);
-
             $response = [
                 "code" => 0,
                 "message" => "login successful"
@@ -144,6 +144,17 @@ function save_phonebook($name, $phone_number)
 
     return true;
 }
+
+function get_phonebook($phone_number)
+{
+    $user = get_user();
+    $user_id = $user['user_id'];
+
+    $sql = "SELECT FROM phonebook where phone_number = '$phone_number'";
+    $query = mysqli_query(conn(), $sql);
+    return mysqli_fetch_assoc($query);
+}
+
 
 function set_user($user)
 {

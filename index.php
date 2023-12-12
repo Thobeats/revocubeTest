@@ -1,5 +1,11 @@
 <?php
+    session_start();
     include "api/func.php";
+
+    if (get_user() == []){
+        header("Location: login_page.php");
+    }
+
 ?>
 
 <!DOCTYPE html>
