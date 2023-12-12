@@ -24,8 +24,7 @@ function login_user($username, $password)
     }
     else
     {
-        $query = check_username($username);
-        $user = mysqli_fetch_assoc($query);
+        $user = get_username($username);
         // Check if the Password is correct
         $password_check = hash_password($password);
 
@@ -117,6 +116,11 @@ function check_username($username):bool
 {
     $check = mysqli_query(conn(), "select * from users where username = '$username'");
     return mysqli_num_rows($check);
+}
+
+function get_username($username){
+    $check = mysqli_query(conn(), "select * from users where username = '$username'");
+    return mysqli_fetch_assoc($check);
 }
 
 function hash_password($password):bool
